@@ -16,7 +16,7 @@ def knn(x,k,e=1e-6):
 			for j in range(len(nn[i])): candidates.extend(nn[nn[i][j]])
 			random.shuffle(candidates) # randomize list
 			candidates=candidates[0:k] # and keep only k
-			# Add k random items for good luck
+			# Add k random candidates for good luck
 			candidates.extend(random.randint(len(nn),size=k))
 			# Exclude yourself!
 			candidates=list(set(filter(lambda a:a!=i,candidates)))
