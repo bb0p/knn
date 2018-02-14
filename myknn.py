@@ -1,12 +1,14 @@
 from numpy import *
 
-def knn(x,k): 
-	"""Find k-nearest neighbors of x[i,:] for all i"""
+def knn(x,k,e=1e-6): 
+	"""Find k-nearest neighbors of x[i,:] for all i
+	Set e=0 for optimal solution or higher number
+	for faster execution"""
 	# Fill nn matrix with references to random neighbors
 	nn=random.randint(len(x),size=(len(x),k)).tolist()
 	total_mse=ones(len(nn)) # Initialize mse
 	old_mse=mean(total_mse)+1
-	while mean(total_mse)<old_mse: # As long as we can improve
+	while mean(total_mse)+e<old_mse: # As long as we can improve
 		old_mse=mean(total_mse) 
 		for i in range(len(x)): # improve nn[i,:] for all x[i,:]
 			candidates=list(nn[i]) # Remember current neighbors
