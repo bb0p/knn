@@ -14,8 +14,9 @@ def knn(x,k,e=1e-6):
 			candidates=[]
 			# Extend candidate list with the neighbors of your neighbors
 			for j in range(len(nn[i])): candidates.extend(nn[nn[i][j]])
+			candidates=list(set(candidates))
 			random.shuffle(candidates) # randomize list
-			candidates=candidates[0:k] # and keep only k
+			candidates=candidates[0:2*k] # and keep only 2*k
 			# Add k random candidates for good luck
 			candidates.extend(random.randint(len(nn),size=k))
 			# Exclude yourself!
